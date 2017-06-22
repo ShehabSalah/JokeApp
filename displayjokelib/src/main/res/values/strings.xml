@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Display Joke</string>
+    <string name="intent_name">Extras</string>
+</resources>
