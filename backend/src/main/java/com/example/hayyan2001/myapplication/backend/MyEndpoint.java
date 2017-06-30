@@ -6,30 +6,43 @@
 
 package com.example.hayyan2001.myapplication.backend;
 
+import com.example.Jokes;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 
 import javax.inject.Named;
 
-/** An endpoint class we are exposing */
+/**
+ * An endpoint class we are exposing
+ */
 @Api(
-  name = "myApi",
-  version = "v1",
-  namespace = @ApiNamespace(
-    ownerDomain = "backend.myapplication.hayyan2001.example.com",
-    ownerName = "backend.myapplication.hayyan2001.example.com",
-    packagePath=""
-  )
+        name = "myApi",
+        version = "v1",
+        namespace = @ApiNamespace(
+                ownerDomain = "backend.myapplication.hayyan2001.example.com",
+                ownerName = "backend.myapplication.hayyan2001.example.com",
+                packagePath = ""
+        )
 )
 public class MyEndpoint {
 
-    /** A simple endpoint method that takes a name and says Hi back */
+    /**
+     * A simple endpoint method that takes a name and says Hi back
+     * This method for testing only.
+     */
     @ApiMethod(name = "sayHi")
     public MyBean sayHi(@Named("name") String name) {
         MyBean response = new MyBean();
         response.setData("Hi, " + name);
+        return response;
+    }
 
+    @ApiMethod(name = "getJoke")
+    public MyBean getJokes() {
+        Jokes jokes = new Jokes();
+        MyBean response = new MyBean();
+        response.setData(jokes.getJoke());
         return response;
     }
 
